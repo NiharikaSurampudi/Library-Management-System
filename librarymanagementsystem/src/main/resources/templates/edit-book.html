@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Book</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+</head>
+<body>
+    <h1>Edit Book</h1>
+	<form th:action="@{/books/update/{id}(id=*{id})}" th:object="${book}" method="post">
+	        
+	        <input type="hidden" th:field="*{id}"/> <!-- ✅ Hidden ID field -->
+
+	        <label>Book ID:</label>
+	        <input type="text" th:field="*{id}" disabled/><br/><br/> <!-- Just for display -->
+
+        <label>Title:</label>
+        <input type="text" th:field="*{title}" required/><br/><br/>
+
+        <label>Author:</label>
+        <input type="text" th:field="*{author}" required/><br/><br/>
+
+        <label>Genre:</label>
+        <input type="text" th:field="*{genre}"/><br/><br/>
+
+        <label>Availability:</label>
+        <select th:field="*{availabilityStatus}">
+            <option value="Available">Available</option>
+            <option value="Checked Out">Checked Out</option>
+        </select><br/><br/>
+
+        <button type="submit">Update</button>
+        <a href="/books/list">Cancel</a>
+    </form>
+</body>
+</html>
